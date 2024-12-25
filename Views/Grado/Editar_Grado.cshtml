@@ -1,0 +1,40 @@
+﻿@model DTO.Grado_DTO
+<h2>@ViewBag.Titulo</h2>
+
+@using (Html.BeginForm("Editar_Grado", "Grado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div>
+                @Html.HiddenFor(model => model.ID_Grado)
+
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Grado)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Grado, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Grado, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Grupo)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Grupo, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Grupo, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.ID_Profesor)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.ID_Profesor, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.ID_Profesor, null)
+            </div>
+            @*boton de guardar*@
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

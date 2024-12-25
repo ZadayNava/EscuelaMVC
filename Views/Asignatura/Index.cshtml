@@ -1,0 +1,26 @@
+﻿@*Reupero el viewbag*@
+@*para referenciar un metodo, una variable o un elemento de codigo '@'*@
+<h1>@ViewBag.Titulo</h1
+<br />
+<div class="row">
+    <div class="col-md-2" style="text-align:right;">
+        <a href="~/Asignatura/Nueva_Asignatura" class="btn btn-primary">Nueva Asignatura</a>
+    </div>
+</div>
+<br />
+<div class="col-md-12 row text-center">
+    @foreach (var asignatura in Model)
+    {
+        //Tarjeta de bootstrap
+        <div class="col-md-3 col-sm-12">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h2 class="card-title">Num. Asignatura @asignatura.ID_Asignatura</h2>
+                    <h5 class="card-title">@asignatura.Nombre</h5>
+                    <a class="btn btn-warning" href="~/Asignatura/Editar_Asignatura/@asignatura.ID_Asignatura">Editar</a>
+                    <a class="btn btn-danger" href="~/Asignatura/Confirmar_Eliminar/@asignatura.ID_Asignatura">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

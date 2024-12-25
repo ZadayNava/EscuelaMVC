@@ -1,0 +1,23 @@
+﻿@model DTO.Asignatura_DTO
+
+<h2>@ViewBag.Titulo</h2>
+
+@using (Html.BeginForm("Nueva_Asignatura", "Asignatura", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Nombre)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Nombre, null)
+            </div>
+            @*boton de guardar*@
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

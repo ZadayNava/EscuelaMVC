@@ -1,0 +1,30 @@
+﻿<h1>@ViewBag.Titulo</h1>
+<br />
+<div class="row">
+    <div class="col-md-2" style="text-align:right;">
+        <a href="~/Proesor/Nuevo_Profesor" class="btn btn-primary">Nuevo Profesor</a>
+    </div>
+</div>
+<br />
+<div class="col-md-12 row text-center">
+    @foreach (var profesor in Model)
+    {
+        //Tarjeta de bootstrap
+        <div class="col-md-3 col-sm-12">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@profesor.ID_Profesor</h5>
+                    <h5 class="card-title">@profesor.Nombre</h5>
+                    <h5 class="card-title">@profesor.APaterno</h5>
+                    <h5 class="card-title">@profesor.AMaterno</h5>
+                    <h5 class="card-title">@profesor.CURP</h5>
+                    <h5 class="card-title">@profesor.Sexo</h5>
+                    <h5 class="card-title">@profesor.Telefono</h5>
+                    <h5 class="card-title">@profesor.FechaNacimiento</h5>
+                    <a class="btn btn-warning" href="~/Proesor/Editar_Profesor/@profesor.ID_Profesor">Editar</a>
+                    <a class="btn btn-danger" href="~/Proesor/Confirmar_Eliminar/@profesor.ID_Profesor">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

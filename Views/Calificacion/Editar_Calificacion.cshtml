@@ -1,0 +1,51 @@
+﻿@model DTO.Calificacion_DTO
+
+@*no puede recibir otros datos que no venga de dto*@
+@*Indicamos a razor que utilizaremos un modelo a especifico*@
+<h2>@ViewBag.Titulo</h2>
+
+@using (Html.BeginForm("Editar_Calificacion", "Calificacion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div>
+                @Html.HiddenFor(model => model.ID_Calificacion)
+
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Calificacion)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Calificacion, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Calificacion, null)
+            </div>
+            <div>
+
+                @Html.HiddenFor(model => model.ID_Estudiante)
+
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.ID_Estudiante)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.ID_Estudiante, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.ID_Estudiante, null)
+            </div>
+            <div>
+                @*Recuperar y encviar la informacin NO EDITABLE EN 2DO PLANO*@
+                @*esta informacion no se  muestra en el formulario, p es requisitop para nuetsro modelo *@
+
+                @Html.HiddenFor(model => model.ID_Asignatura)
+
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.ID_Asignatura)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.ID_Asignatura, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.ID_Asignatura, null)
+            </div>
+            @*boton de guardar*@
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿<h1>@ViewBag.Titulo</h1>
+<br />
+<div class="row">
+    <div class="col-md-2" style="text-align:right;">
+        <a href="~/Grado/Nuevo_Grado" class="btn btn-primary">Nueva Grado</a>
+    </div>
+</div>
+<br />
+<div class="col-md-12 row text-center">
+    @foreach (var grado in Model)
+    {
+        <div class="col-md-3 col-sm-12">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@grado.ID_Grado</h5>
+                    <h5 class="card-title">@grado.Grado1</h5>
+                    <h2 class="card-title">@grado.Grupo</h2>
+                    <h5 class="card-title">@grado.ID_Profesor</h5>
+                    <a class="btn btn-warning" href="~/Grado/Editar_Grado/@grado.ID_Grado">Editar</a>
+                    <a class="btn btn-danger" href="~/Grado/Confirmar_Eliminar/@grado.ID_Grado">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

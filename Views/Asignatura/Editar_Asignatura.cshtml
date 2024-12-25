@@ -1,0 +1,29 @@
+﻿@model DTO.Asignatura_DTO
+@*no puede recibir otros datos que no venga de dto*@
+@*Indicamos a razor que utilizaremos un modelo a especifico*@
+<h2>@ViewBag.Titulo</h2>
+
+@using (Html.BeginForm("Editar_Asignatura", "Asignatura", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div>
+                @*Recuperar y encviar la informacin NO EDITABLE EN 2DO PLANO*@
+                @*esta informacion no se  muestra en el formulario, p es requisitop para nuetsro modelo *@
+
+                @Html.HiddenFor(model => model.ID_Asignatura)
+
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Nombre)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Nombre, null)
+            </div>
+            @*boton de guardar*@
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

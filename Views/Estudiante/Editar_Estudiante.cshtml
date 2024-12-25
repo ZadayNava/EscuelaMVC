@@ -1,0 +1,92 @@
+﻿@model DTO.Estudiante_DTO
+@*no puede recibir otros datos que no venga de dto*@
+@*Indicamos a razor que utilizaremos un modelo a especifico*@
+<h2>@ViewBag.Titulo</h2>
+
+@using (Html.BeginForm("Editar_Estudiante", "Estudiante", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-12">
+            <div>
+                @*Recuperar y encviar la informacin NO EDITABLE EN 2DO PLANO*@
+                @*esta informacion no se  muestra en el formulario, p es requisitop para nuetsro modelo *@
+
+                @Html.HiddenFor(model => model.ID_Estudiante)
+
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Nombre)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Nombre, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.APaterno)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.APaterno, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.APaterno, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.AMaterno)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.AMaterno, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.AMaterno, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.CURP)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.CURP, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.CURP, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Sexo)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Sexo, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Telefono)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Telefono, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Telefono, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.Direccion)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.Direccion, null)
+            </div>
+            <div>
+                @*Generamos la etiqueta label*@
+                @Html.LabelFor(model => model.ID_Grado)
+                @*generamos una etiqueta input*@
+                @Html.TextBoxFor(model => model.ID_Grado, new { @class = "form-control", @type = "text" })
+                @*generamos un espacio para el msg de validacion*@
+                @Html.ValidationMessageFor(model => model.ID_Grado, null)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*boton de guardar*@
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}
