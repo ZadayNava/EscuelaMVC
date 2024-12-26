@@ -25,6 +25,13 @@ namespace EscuelaMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            /*tailwind*/
+            bundles.Add(new StyleBundle("~/Content/tailwind").Include("~/Content/tailwind/output.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-3.7.0.js"));
+
         }
     }
 }

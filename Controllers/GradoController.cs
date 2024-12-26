@@ -45,6 +45,7 @@ namespace EscuelaMVC.Controllers
         [HttpGet]
         public ActionResult Nuevo_Grado()
         {
+            cargarDDL();
             return View();
         }
 
@@ -63,19 +64,22 @@ namespace EscuelaMVC.Controllers
                         grado.ID_Profesor = model.ID_Profesor;
                         context.Grado.Add(grado);
                         context.SaveChanges();
+                        SweetAlert("Registrado!", $"Todo correcto", NotificationType.success);
                         return RedirectToAction("Index");
 
                     }
                 }
                 else
                 {
+                    cargarDDL();
                     SweetAlert("Falta un dato!", $"Es necesario llenar el formulario", NotificationType.info);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
-                SweetAlert("Falta un dato!", $"Es necesario llenar el formulario", NotificationType.info);
+                cargarDDL();
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return View(model);
             }
         }
@@ -106,11 +110,11 @@ namespace EscuelaMVC.Controllers
                 }
                 if (grados == null) 
                 {
-                    //sweet alert
                     return RedirectToAction("Index");
                 }
                 //si todo sale bien, envio a la vista con datos a editar
                 ViewBag.Titulo = $"Editar grado {grados.ID_Grado}";
+                cargarDDL();
                 return View(grados);
             }
             else
@@ -142,6 +146,7 @@ namespace EscuelaMVC.Controllers
                         try
                         {
                             context.SaveChanges();
+                            SweetAlert("Editado!", $"Todo correcto", NotificationType.success);
                         }
 
                         catch (DbEntityValidationException ex)
@@ -159,6 +164,7 @@ namespace EscuelaMVC.Controllers
                                 }
                             }
                             //Sweet Alert
+                            SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                         }
                         //Sweet Alert
                         return RedirectToAction("Index");
@@ -167,12 +173,14 @@ namespace EscuelaMVC.Controllers
                 else
                 {
                     //Sweet Alert
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
                 //Sweet Alert
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return View(model);
             }
         }
@@ -197,7 +205,7 @@ namespace EscuelaMVC.Controllers
                     context.Grado.Remove(grado);
                     context.SaveChanges();
                     //sweetalert
-                    SweetAlert("Eliminado", $"Ha ocurrido un error: ", NotificationType.success);
+                    SweetAlert("Eliminado", $"Todo correcto", NotificationType.success);
                     return RedirectToAction("Index");
                 }
             }
@@ -213,6 +221,17 @@ namespace EscuelaMVC.Controllers
         {
             SweetAlert_Eliminar(id);
             return RedirectToAction("Index");
+        }
+        public void cargarDDL()
+        {
+
+            List<Profesor> Lista_Profesor = new List<Profesor>();
+
+            using (EscuelaEntities contexto = new EscuelaEntities())
+            {
+                Lista_Profesor = (from Profesor in contexto.Profesor select Profesor).ToList();
+                ViewBag.Lista_Profesor = Lista_Profesor;
+            }
         }
 
         #region Sweet Alert

@@ -9,25 +9,44 @@
 </div>
 <br />
 <div class="col-md-12 row text-center">
-    @foreach (var estudiante in Model)
-    {
-        //Tarjeta de bootstrap
-        <div class="col-md-3 col-sm-12">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">@estudiante.Estudiante_.Nombre</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.APaterno</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.AMaterno</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.CURP</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.Sexo</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.Telefono</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.Direccion</h5>
-                    <h5 class="card-title">@estudiante.Estudiante_.FechaNacimiento</h5>
-                    <h5 class="card-title">Grado: @estudiante.Grado_.Grado</h5>
-                    <a class="btn btn-warning" href="~/Estudiante/Editar_Estudiante/@estudiante.Estudiante_.ID_Estudiante">Editar</a>
-                    <a class="btn btn-danger" href="~/Estudiante/Confirmar_Eliminar/@estudiante.Estudiante_.ID_Estudiante">Eliminar</a>
-                </div>
-            </div>
-        </div>
-    }
+    <table class="table table-sm">
+        <thead class="table-warning">
+            <tr>
+                <th scope="col">Nombre Aluno</th>
+                <th scope="col">Apellido paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">CURP</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">Grado</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var estudiante in Model)
+            {
+
+                <tr>
+                    <td>@estudiante.Estudiante_.Nombre</td>
+                    <td>@estudiante.Estudiante_.APaterno</td>
+                    <td>@estudiante.Estudiante_.AMaterno</td>
+                    <td>@estudiante.Estudiante_.CURP</td>
+                    <td>@estudiante.Estudiante_.Sexo</td>
+                    <td>@estudiante.Estudiante_.Telefono</td>
+                    <td>@estudiante.Estudiante_.Direccion</td>
+                    <td>@estudiante.Estudiante_.FechaNacimiento</td>
+                    <td>@estudiante.Grado_.Grado</td>
+                    <td>
+                        <a class="btn btn-warning" href="~/Estudiante/Editar_Estudiante/@estudiante.Estudiante_.ID_Estudiante">Editar</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="~/Estudiante/Confirmar_Eliminar/@estudiante.Estudiante_.ID_Estudiante">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

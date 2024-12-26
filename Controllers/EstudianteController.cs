@@ -34,9 +34,9 @@ namespace EscuelaMVC.Controllers
                                            APaterno = e.APaterno,
                                            CURP = e.CURP,
                                            Sexo = e.Sexo,
-                                          Telefono = e.Telefono,
-                                          Direccion = e.Direccion,
-                                          FechaNacimiento = e.FechaNacimiento
+                                           Telefono = e.Telefono,
+                                           Direccion = e.Direccion,
+                                           FechaNacimiento = e.FechaNacimiento
                                        }
                                    }).ToList();
             }
@@ -49,6 +49,7 @@ namespace EscuelaMVC.Controllers
         [HttpGet]
         public ActionResult Nuevo_Estudiante()
         {
+            cargarDDL();
             return View();
         }
 
@@ -74,17 +75,23 @@ namespace EscuelaMVC.Controllers
                         estudiante.ID_Grado = model.ID_Grado;
                         context.Estudiante.Add(estudiante);
                         context.SaveChanges();
+                        SweetAlert("Registrado!", $"Todo correcto", NotificationType.success);
                         return RedirectToAction("Index");
 
                     }
                 }
                 else
                 {
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
+                    cargarDDL();
                     return View(model);
                 }
+
             }
             catch (Exception ex)
             {
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
+                cargarDDL();
                 return View(model);
             }
         }
@@ -109,31 +116,33 @@ namespace EscuelaMVC.Controllers
                     estudiante.ID_Grado = estudiante.ID_Grado;
 
                     estudiante = (from c in context.Estudiante
-                               where c.ID_Estudiante == id
-                               select new Estudiante_DTO()
-                               {
-                                   ID_Estudiante = c.ID_Estudiante,
-                                   Nombre = c.Nombre,
-                                   APaterno = c.APaterno,
-                                   AMaterno = c.AMaterno,
-                                   CURP = c.CURP,
-                                   Sexo = c.Sexo,
-                                   Telefono = c.Telefono,
-                                   Direccion = c.Direccion,
-                                   FechaNacimiento = c.FechaNacimiento,
-                                   ID_Grado = c.ID_Grado
-                               }).FirstOrDefault();
+                                  where c.ID_Estudiante == id
+                                  select new Estudiante_DTO()
+                                  {
+                                      ID_Estudiante = c.ID_Estudiante,
+                                      Nombre = c.Nombre,
+                                      APaterno = c.APaterno,
+                                      AMaterno = c.AMaterno,
+                                      CURP = c.CURP,
+                                      Sexo = c.Sexo,
+                                      Telefono = c.Telefono,
+                                      Direccion = c.Direccion,
+                                      FechaNacimiento = c.FechaNacimiento,
+                                      ID_Grado = c.ID_Grado
+                                  }).FirstOrDefault();
                 }
                 if (estudiante == null)
                 {
                     return RedirectToAction("Index");
                 }
                 ViewBag.Titulo = $"Editar estudiante {estudiante.ID_Estudiante}";
+                cargarDDL();
                 return View(estudiante);
             }
             else
             {
                 //seet alert
+                cargarDDL();
                 return RedirectToAction("Index");
             }
         }
@@ -164,6 +173,7 @@ namespace EscuelaMVC.Controllers
                         try
                         {
                             context.SaveChanges();
+                            SweetAlert("Editado!", $"Todo correcto", NotificationType.success);
                         }
                         catch (DbEntityValidationException ex)
                         {
@@ -177,25 +187,45 @@ namespace EscuelaMVC.Controllers
                                     resp += validationError.ErrorMessage;
                                 }
                             }
+                            cargarDDL();
+                            SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                             //Sweet Alert
                         }
                         //Sweet Alert
+                        cargarDDL();
                         return RedirectToAction("Index");
                     }
                 }
                 else
                 {
                     //Sweet Alert
+                    cargarDDL();
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
+                cargarDDL();
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 //Sweet Alert
                 return View(model);
             }
         }
+        
+        public void cargarDDL()
+        {
 
+            List<Grado> Lista_Grado = new List<Grado>();
+
+
+            using (EscuelaEntities contexto = new EscuelaEntities())
+            {
+                Lista_Grado = (from Grado in contexto.Grado select Grado).ToList();
+                ViewBag.Lista_Grado = Lista_Grado;
+
+            }
+        }
         public ActionResult Eliminar_Estudiante(int id)
         {
             try
@@ -214,7 +244,7 @@ namespace EscuelaMVC.Controllers
                     context.SaveChanges();
 
                     //sweetalert
-                    SweetAlert("Eliminado", $"Ha ocurrido un error: ", NotificationType.success);
+                    SweetAlert("Eliminado", $"Todo correcto", NotificationType.success);
                     return RedirectToAction("Index");
                 }
             }

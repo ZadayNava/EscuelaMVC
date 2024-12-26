@@ -1,6 +1,8 @@
 ﻿@*Reupero el viewbag*@
 @*para referenciar un metodo, una variable o un elemento de codigo '@'*@
-<h1>@ViewBag.Titulo</h1
+<h1>
+    @ViewBag.Titulo
+</h1>
 <br />
 <div class="row">
     <div class="col-md-2" style="text-align:right;">
@@ -9,17 +11,41 @@
 </div>
 <br />
 <div class="col-md-12 row text-center">
-    @foreach (var asignatura in Model)
-    {
-        //Tarjeta de bootstrap
-        <div class="col-md-3 col-sm-12">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">@asignatura.Nombre</h5>
-                    <a class="btn btn-warning" href="~/Asignatura/Editar_Asignatura/@asignatura.ID_Asignatura">Editar</a>
-                    <a class="btn btn-danger" href="~/Asignatura/Confirmar_Eliminar/@asignatura.ID_Asignatura">Eliminar</a>
-                </div>
-            </div>
-        </div>
-    }
+    <table class="table table-sm">
+        <thead class="table-warning">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Asignatura</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var asignatura in Model)
+            {
+                @*//Tarjeta de bootstrap
+                    <div class="col-md-3 col-sm-12">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">@asignatura.Nombre</h5>
+                                <a class="btn btn-warning" href="~/Asignatura/Editar_Asignatura/@asignatura.ID_Asignatura">Editar</a>
+                                <a class="btn btn-danger" href="~/Asignatura/Confirmar_Eliminar/@asignatura.ID_Asignatura">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <tr>
+                    <th scope="row">@asignatura.ID_Asignatura</th>
+                    <td>@asignatura.Nombre</td>
+                    <td>
+                        <a class="btn btn-warning" href="~/Asignatura/Editar_Asignatura/@asignatura.ID_Asignatura">Editar</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="~/Asignatura/Confirmar_Eliminar/@asignatura.ID_Asignatura">Eliminar</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
 </div>

@@ -2,8 +2,8 @@
 module.exports = {
     content: [
         "./Views/**/*.cshtml",
-        "./Content/*.css",
-        "./Scripts/*.js"
+        "./Content/**/*.css",
+        "./Scripts/**/*.js"
     ],
   theme: {
     extend: {},

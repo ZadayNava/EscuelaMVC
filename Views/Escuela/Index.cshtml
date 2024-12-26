@@ -8,22 +8,20 @@
     </div>
 </div>
 <br />
-<div class="col-md-12 row text-center">
+<div class="col-md-12 row text-center mt-xxl-auto center-block justify-content-center">
     @foreach (var escuela in Model)
     {
         //Tarjeta de bootstrap
-        <div class="col-md-3 col-sm-12">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">@escuela.Nombre</h5>
-                    <h5 class="card-title">@escuela.Clave</h5>
-                    <h5 class="card-title">@escuela.Telefono</h5>
-                    <h5 class="card-title">@escuela.Nivel</h5>
-                    <h5 class="card-title">@escuela.Direccion</h5>
-                    <h5 class="card-title">@escuela.FechaFundacion</h5>
-                    <a class="btn btn-warning" href="~/Escuela/Editar_Escuela/@escuela.ID_Escuela">Editar</a>
-                    <a class="btn btn-danger" href="~/Escuela/Confirmar_Eliminar/@escuela.ID_Escuela">Eliminar</a>
-                </div>
+        <div class="card text-center " style="width: 18rem; margin: 10px;">
+            <div class="card-body">
+                <h4 class="card-title">@escuela.Nombre</h4><br />
+                <h5 class="card-subtitle">@escuela.Clave</h5>
+                <p class="card-text">@escuela.Telefono</p>
+                <p class="card-text">@escuela.Nivel</p>
+                <p class="card-text">@escuela.Direccion</p>
+                <p class="card-text">@escuela.FechaFundacion</p>
+                <a class="btn btn-warning" href="~/Escuela/Editar_Escuela/@escuela.ID_Escuela">Editar</a>
+                <a class="btn btn-danger" href="~/Escuela/Confirmar_Eliminar/@escuela.ID_Escuela">Eliminar</a>
             </div>
         </div>
     }

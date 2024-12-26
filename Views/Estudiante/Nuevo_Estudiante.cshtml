@@ -65,10 +65,8 @@
             <div>
                 @*Generamos la etiqueta label*@
                 @Html.LabelFor(model => model.ID_Grado)
-                @*generamos una etiqueta input*@
-                @Html.TextBoxFor(model => model.ID_Grado, new { @class = "form-control", @type = "text" })
-                @*generamos un espacio para el msg de validacion*@
-                @Html.ValidationMessageFor(model => model.ID_Grado, null)
+                @*generamos una dropdownlist que se alimenta de la lista que pasamos por el viewbag*@
+                @Html.DropDownListFor(model => model.ID_Grado, new SelectList(ViewBag.Lista_Grado, "ID_Grado", "Grado1"), new { @class = "form-control" })
             </div>
             <div>
                 @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })

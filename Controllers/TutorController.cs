@@ -52,6 +52,7 @@ namespace EscuelaMVC.Controllers
         [HttpGet]
         public ActionResult Nuevo_Tutor()
         {
+            cargarDDL();
             return View();
         }
 
@@ -78,17 +79,22 @@ namespace EscuelaMVC.Controllers
                         tutor.ID_Estudiante = model.ID_Estudiante;
                         context.Tutor.Add(tutor);
                         context.SaveChanges();
+                        SweetAlert("Registrado!", $"Todo correcto", NotificationType.success);
                         return RedirectToAction("Index");
 
                     }
                 }
                 else
                 {
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
+                    cargarDDL();
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
+                cargarDDL();
                 return View(model);
             }
         }
@@ -133,14 +139,17 @@ namespace EscuelaMVC.Controllers
                 }
                 if (tutor == null)
                 {
+                    cargarDDL();
                     return RedirectToAction("Index");
                 }
                 ViewBag.Titulo = $"Editar tutor {tutor.ID_Tutor}";
+                cargarDDL();
                 return View(tutor);
             }
             else
             {
                 //seet alert
+                cargarDDL();
                 return RedirectToAction("Index");
             }
         }
@@ -172,6 +181,7 @@ namespace EscuelaMVC.Controllers
                         try
                         {
                             context.SaveChanges();
+                            SweetAlert("Editado!", $"Registro editado", NotificationType.success);
                         }
                         catch (DbEntityValidationException ex)
                         {
@@ -186,20 +196,26 @@ namespace EscuelaMVC.Controllers
                                 }
                             }
                             //Sweet Alert
+                            SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                         }
                         //Sweet Alert
+                        cargarDDL();
                         return RedirectToAction("Index");
                     }
                 }
                 else
                 {
                     //Sweet Alert
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
+                    cargarDDL();
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
                 //Sweet Alert
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
+                cargarDDL();
                 return View(model);
             }
         }
@@ -222,7 +238,7 @@ namespace EscuelaMVC.Controllers
                     context.SaveChanges();
 
                     //sweetalert
-                    SweetAlert("Eliminado", $"Ha ocurrido un error: ", NotificationType.success);
+                    SweetAlert("Eliminado", $"Todo correcto", NotificationType.success);
                     return RedirectToAction("Index");
                 }
             }
@@ -231,6 +247,17 @@ namespace EscuelaMVC.Controllers
                 //sweetalert
                 SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return RedirectToAction("Index");
+            }
+        }
+        public void cargarDDL()
+        {
+
+            List<Estudiante> Lista_Estudiante = new List<Estudiante>();
+
+            using (EscuelaEntities contexto = new EscuelaEntities())
+            {
+                Lista_Estudiante = (from Estudiante in contexto.Estudiante select Estudiante).ToList();
+                ViewBag.Lista_Estudiante = Lista_Estudiante;
             }
         }
 

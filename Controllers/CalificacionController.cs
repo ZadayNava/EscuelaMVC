@@ -39,7 +39,7 @@ namespace EscuelaMVC.Controllers
                                              ID_Estudiante = e.ID_Estudiante,
                                              Nombre = e.Nombre
                                          }
-                                     }).ToList();
+                                     }).OrderByDescending(x => x.Estudiante_.Nombre).ToList();
             }
 
             ViewBag.Titulo = "Lista de calificacion";                
@@ -68,18 +68,21 @@ namespace EscuelaMVC.Controllers
                         calificaciones.ID_Asignatura = model.ID_Asignatura;
                         context.Calificacion.Add(calificaciones);
                         context.SaveChanges();
+                        SweetAlert("Registrado!", $"Todo correcto", NotificationType.success);
                         return RedirectToAction("Index");
                     }
                 }
                 else
                 {
                     cargarDDL();
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
                 cargarDDL();
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return View(model);
             }
         }
@@ -87,6 +90,7 @@ namespace EscuelaMVC.Controllers
         //GET:Editar_Calficacion/{id}
         public ActionResult Editar_Calificacion(int id)
         {
+            cargarDDL();
             if (id > 0)
             {
                 Calificacion_DTO cal = new Calificacion_DTO();
@@ -118,7 +122,6 @@ namespace EscuelaMVC.Controllers
             }
         }
 
-
         [HttpPost]
         public ActionResult Editar_Calificacion(Calificacion_DTO model)
         {
@@ -140,6 +143,7 @@ namespace EscuelaMVC.Controllers
                         try
                         {
                             context.SaveChanges();
+                            SweetAlert("Editado!", $"Todo correcto", NotificationType.success);
                         }
                         //agregar using desde 'using System.Data.Entity.Validation;'
                         catch (DbEntityValidationException ex)
@@ -165,12 +169,14 @@ namespace EscuelaMVC.Controllers
                 else
                 {
                     //Sweet Alert
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
                 //Sweet Alert
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return View(model);
             }
         }
@@ -192,7 +198,7 @@ namespace EscuelaMVC.Controllers
                     context.Calificacion.Remove(cali);
                     context.SaveChanges();
                     //sweetalert
-                    SweetAlert("Eliminado", $"Ha ocurrido un error: ", NotificationType.success);
+                    SweetAlert("Eliminado", $"Todo correcto", NotificationType.success);
                     return RedirectToAction("Index");
                 }
             }

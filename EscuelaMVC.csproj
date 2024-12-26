@@ -141,7 +141,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IAsignaturaService.cs" />
     <Compile Include="Models\Asignatura.cs">
       <DependentUpon>EscuelaModel.tt</DependentUpon>
     </Compile>
@@ -208,8 +207,28 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\input.css" />
-    <Content Include="Content\output.css" />
+    <Content Include="Content\bootstrap1.css" />
+    <Content Include="Content\fonts.css" />
+    <Content Include="Content\fonts\fl-bigmug-line.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\lg.svg" />
+    <Content Include="Content\fonts\Linearicons.svg" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="Content\imagenes\ajax-loader.gif" />
+    <Content Include="Content\imagenes\favicon.ico" />
+    <Content Include="Content\imagenes\gmap_marker.png" />
+    <Content Include="Content\imagenes\gmap_marker_active.png" />
+    <Content Include="Content\imagenes\home-1-369x341.jpeg" />
+    <Content Include="Content\imagenes\loading.gif" />
+    <Content Include="Content\imagenes\logo-default-245x50.png" />
+    <Content Include="Content\imagenes\logo-inverse-245x50.png" />
+    <Content Include="Content\imagenes\monstroid-2.jpg" />
+    <Content Include="Content\imagenes\monstroid-big-2.jpg" />
+    <Content Include="Content\imagenes\preloader.gif" />
+    <Content Include="Content\imagenes\_blank.png" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\tailwind\input.css" />
+    <Content Include="Content\tailwind\output.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -236,7 +255,26 @@
     <Content Include="Models\EscuelaModel.edmx.diagram">
       <DependentUpon>EscuelaModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\fl-bigmug-line.eot" />
+    <Content Include="Content\fonts\fl-bigmug-line.ttf" />
+    <Content Include="Content\fonts\fl-bigmug-line.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\lg.eot" />
+    <Content Include="Content\fonts\lg.ttf" />
+    <Content Include="Content\fonts\lg.woff" />
+    <Content Include="Content\fonts\Linearicons.eot" />
+    <Content Include="Content\fonts\Linearicons.ttf" />
+    <Content Include="Content\fonts\Linearicons.woff" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Content\fonts\materialdesignicons-webfont.woff2" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\core.min.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
     <Content Include="Scripts\jquery-3.7.0.slim.js" />
@@ -247,7 +285,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="tailwind.config.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\tailwind.config.js" />
     <Content Include="WCF\AsignaturaService.svc" />
     <Content Include="WCF\EscuelaService.svc" />
     <Content Include="Web.config" />

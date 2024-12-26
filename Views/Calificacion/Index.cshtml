@@ -9,19 +9,45 @@
 </div>
 <br />
 <div class="col-md-12 row text-center">
-    @foreach (var calificacion in Model)
-    {
-        //Tarjeta de bootstrap
-        <div class="col-md-3 col-sm-12">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">@calificacion.Asignatura_.Nombre</h5>
-                    <h5 class="card-title">@calificacion.Estudiante_.Nombre</h5>
-                    <h5 class="card-title">@calificacion.Calificacion_.Calificacion</h5>
-                    <a class="btn btn-warning" href="~/Calificacion/Editar_Calificacion/@calificacion.Calificacion_.ID_Calificacion">Editar</a>
-                    <a class="btn btn-danger" href="~/Calificacion/Confirmar_Eliminar/@calificacion.Calificacion_.ID_Calificacion">Eliminar</a>
-                </div>
-            </div>
-        </div>
-    }
+    <table class="table table-sm">
+        <thead class="table-warning">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre Alumno</th>
+                <th scope="col">Asignaturas</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var calificacion in Model)
+            {
+                <tr>
+                    <th scope="row">@calificacion.Estudiante_.Nombre</th>
+                    <td>@calificacion.Asignatura_.Nombre</td>
+                    <td>@calificacion.Calificacion_.Calificacion</td>
+
+                    <td>
+                        <a class="btn btn-warning" href="~/Calificacion/Editar_Calificacion/@calificacion.Calificacion_.ID_Calificacion">Editar</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="~/Calificacion/Confirmar_Eliminar/@calificacion.Calificacion_.ID_Calificacion">Eliminar</a>
+                    </td>
+                </tr>
+                @*//Tarjeta de bootstrap
+                    <div class="col-md-3 col-sm-12">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">@calificacion.Asignatura_.Nombre</h5>
+                                <h5 class="card-title">@calificacion.Estudiante_.Nombre</h5>
+                                <h5 class="card-title">@calificacion.Calificacion_.Calificacion</h5>
+                                <a class="btn btn-warning" href="~/Calificacion/Editar_Calificacion/@calificacion.Calificacion_.ID_Calificacion">Editar</a>
+                                <a class="btn btn-danger" href="~/Calificacion/Confirmar_Eliminar/@calificacion.Calificacion_.ID_Calificacion">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>*@
+            }
+
+        </tbody>
+    </table>
 </div>

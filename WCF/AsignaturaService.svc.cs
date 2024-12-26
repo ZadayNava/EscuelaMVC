@@ -90,6 +90,7 @@ namespace EscuelaMVC.WCF
             {
                 //creo un objto del modelo original para asignarle los valores del exterior
                 Asignatura _asignatura = new Asignatura();
+                _asignatura.ID_Asignatura = id;
                 _asignatura.Nombre = Nombre;
 
                 //modifico el estado en el contexto

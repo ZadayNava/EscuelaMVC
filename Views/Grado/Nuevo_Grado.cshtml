@@ -26,10 +26,8 @@
             <div>
                 @*Generamos la etiqueta label*@
                 @Html.LabelFor(model => model.ID_Profesor)
-                @*generamos una etiqueta input*@
-                @Html.TextBoxFor(model => model.ID_Profesor, new { @class = "form-control", @type = "text" })
-                @*generamos un espacio para el msg de validacion*@
-                @Html.ValidationMessageFor(model => model.ID_Profesor, null)
+                @*generamos una dropdownlist que se alimenta de la lista que pasamos por el viewbag*@
+                @Html.DropDownListFor(model => model.ID_Profesor, new SelectList(ViewBag.Lista_Profesor, "ID_Profesor", "Nombre"), new { @class = "form-control" })
             </div>
             @*boton de guardar*@
             <div style="text-align:right;">

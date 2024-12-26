@@ -46,17 +46,19 @@ namespace EscuelaMVC.Controllers
                         asignatura.Nombre = model.Nombre;
                         context.Asignatura.Add(asignatura);
                         context.SaveChanges();
+                        SweetAlert("Registrado!", $"Todo correcto", NotificationType.success);
                         return RedirectToAction("Index");
-
                     }
                 }
                 else
                 {
+                    SweetAlert("No es valido", $"Ha ocurrido un error: ", NotificationType.error);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return View(model);
             }
         }
@@ -115,6 +117,7 @@ namespace EscuelaMVC.Controllers
                         try
                         {
                             context.SaveChanges();
+                            SweetAlert("Editado!", $"Todo correcto", NotificationType.success);
                         }
                         catch (DbEntityValidationException ex)
                         {
@@ -129,6 +132,8 @@ namespace EscuelaMVC.Controllers
                                     resp += validationError.ErrorMessage;
                                 }
                             }
+
+                            SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                             //Sweet Alert
                         }
                         //Sweet Alert
@@ -138,12 +143,14 @@ namespace EscuelaMVC.Controllers
                 else
                 {
                     //Sweet Alert
+                    SweetAlert("Opsss...", $"Ha ocurrido un error", NotificationType.error);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
                 //Sweet Alert
+                SweetAlert("Opsss...", $"Ha ocurrido un error: {ex.Message}", NotificationType.error);
                 return View(model);
             }
         }
@@ -165,7 +172,7 @@ namespace EscuelaMVC.Controllers
                     context.Asignatura.Remove(asignatura);
                     context.SaveChanges();
                     //sweetalert
-                    SweetAlert("Eliminado", $"Ha ocurrido un error: ", NotificationType.success);
+                    SweetAlert("Eliminado", $"Todo correcto", NotificationType.success);
                     return RedirectToAction("Index");
                 }
             }
