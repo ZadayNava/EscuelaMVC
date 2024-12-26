@@ -24,9 +24,6 @@ namespace EscuelaMVC.Controllers
             }
 
             ViewBag.Titulo = "Lista de escuelas";
-            ViewBag.Subtitulo = "Utilizando ASP.NET MVC";
-
-            ViewData["Titulo2"] = "Segundo titulo";
 
             return View(list_escuela);
         }

@@ -12,12 +12,11 @@
         <div class="col-md-3 col-sm-12">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">@grado.ID_Grado</h5>
-                    <h5 class="card-title">@grado.Grado1</h5>
-                    <h2 class="card-title">@grado.Grupo</h2>
-                    <h5 class="card-title">@grado.ID_Profesor</h5>
-                    <a class="btn btn-warning" href="~/Grado/Editar_Grado/@grado.ID_Grado">Editar</a>
-                    <a class="btn btn-danger" href="~/Grado/Confirmar_Eliminar/@grado.ID_Grado">Eliminar</a>
+                    <h5 class="card-title">@grado.gradoP_.Grado</h5>
+                    <h2 class="card-title">@grado.gradoP_.Grupo</h2>
+                    <h5 class="card-title">Profesor(a): @grado.Profesor_.Nombre</h5>
+                    <a class="btn btn-warning" href="~/Grado/Editar_Grado/@grado.gradoP_.ID_Grado">Editar</a>
+                    <a class="btn btn-danger" href="~/Grado/Confirmar_Eliminar/@grado.gradoP_.ID_Grado">Eliminar</a>
                 </div>
             </div>
         </div>

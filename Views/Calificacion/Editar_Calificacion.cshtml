@@ -10,6 +10,8 @@
         <div class="col-12">
             <div>
                 @Html.HiddenFor(model => model.ID_Calificacion)
+                @Html.HiddenFor(model => model.ID_Estudiante)
+                @Html.HiddenFor(model => model.ID_Asignatura)
 
                 @*Generamos la etiqueta label*@
                 @Html.LabelFor(model => model.Calificacion)
@@ -20,27 +22,6 @@
             </div>
             <div>
 
-                @Html.HiddenFor(model => model.ID_Estudiante)
-
-                @*Generamos la etiqueta label*@
-                @Html.LabelFor(model => model.ID_Estudiante)
-                @*generamos una etiqueta input*@
-                @Html.TextBoxFor(model => model.ID_Estudiante, new { @class = "form-control", @type = "text" })
-                @*generamos un espacio para el msg de validacion*@
-                @Html.ValidationMessageFor(model => model.ID_Estudiante, null)
-            </div>
-            <div>
-                @*Recuperar y encviar la informacin NO EDITABLE EN 2DO PLANO*@
-                @*esta informacion no se  muestra en el formulario, p es requisitop para nuetsro modelo *@
-
-                @Html.HiddenFor(model => model.ID_Asignatura)
-
-                @*Generamos la etiqueta label*@
-                @Html.LabelFor(model => model.ID_Asignatura)
-                @*generamos una etiqueta input*@
-                @Html.TextBoxFor(model => model.ID_Asignatura, new { @class = "form-control", @type = "text" })
-                @*generamos un espacio para el msg de validacion*@
-                @Html.ValidationMessageFor(model => model.ID_Asignatura, null)
             </div>
             @*boton de guardar*@
             <div style="text-align:right;">

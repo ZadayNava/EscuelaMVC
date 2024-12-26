@@ -15,12 +15,31 @@ namespace EscuelaMVC.Controllers
         // GET: Calificacion
         public ActionResult Index()
         {
-            List<Calificacion> list_calificacion = new List<Calificacion>();
+            List<CalificacionesConNombre_DTO> list_calificacion = new List<CalificacionesConNombre_DTO>();
 
-            cargarDDL();
             using (EscuelaEntities context = new EscuelaEntities())
             {
-                list_calificacion = (from Calificacion in context.Calificacion select Calificacion).ToList();
+                list_calificacion = (from c in context.Calificacion
+                                     join e in context.Estudiante on c.ID_Estudiante equals e.ID_Estudiante
+                                     join a in context.Asignatura on c.ID_Asignatura equals a.ID_Asignatura
+                                     select new CalificacionesConNombre_DTO()
+                                     {
+                                         Calificacion_ = new Calificacion_DTO()
+                                         {
+                                             ID_Calificacion = c.ID_Calificacion,
+                                             Calificacion = c.Calificacion1
+                                         },
+                                         Asignatura_ = new Asignatura_DTO()
+                                         {
+                                             ID_Asignatura = a.ID_Asignatura,
+                                             Nombre = a.Nombre
+                                         },
+                                         Estudiante_ = new Estudiante_DTO()
+                                         {
+                                             ID_Estudiante = e.ID_Estudiante,
+                                             Nombre = e.Nombre
+                                         }
+                                     }).ToList();
             }
 
             ViewBag.Titulo = "Lista de calificacion";                
@@ -76,6 +95,7 @@ namespace EscuelaMVC.Controllers
                 {
                     var cal_aux = context.Calificacion.Where(x => x.ID_Calificacion == id).FirstOrDefault();
 
+                    cal.ID_Calificacion = cal_aux.ID_Calificacion;
                     cal.Calificacion = cal_aux.Calificacion1;
                     cal.ID_Estudiante = cal_aux.ID_Estudiante;
                     cal.ID_Asignatura = cal_aux.ID_Asignatura;

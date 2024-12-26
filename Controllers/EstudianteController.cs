@@ -13,17 +13,35 @@ namespace EscuelaMVC.Controllers
     {
         public ActionResult Index()
         {
-            List<Estudiante> list_estudiante = new List<Estudiante>();
+            List<EstudianteGrado_DTO> list_estudiante = new List<EstudianteGrado_DTO>();
 
             using (EscuelaEntities context = new EscuelaEntities())
             {
-                list_estudiante = (from Estudiante in context.Estudiante select Estudiante).ToList();
+                list_estudiante = (from e in context.Estudiante
+                                   join g in context.Grado on e.ID_Grado equals g.ID_Grado
+                                   select new EstudianteGrado_DTO()
+                                   {
+                                       Grado_ = new Grado_DTO()
+                                       {
+                                           ID_Grado = g.ID_Grado,
+                                           Grado = g.Grado1
+                                       },
+                                       Estudiante_ = new Estudiante_DTO()
+                                       {
+                                           ID_Estudiante = e.ID_Estudiante,
+                                           Nombre = e.Nombre,
+                                           AMaterno = e.AMaterno,
+                                           APaterno = e.APaterno,
+                                           CURP = e.CURP,
+                                           Sexo = e.Sexo,
+                                          Telefono = e.Telefono,
+                                          Direccion = e.Direccion,
+                                          FechaNacimiento = e.FechaNacimiento
+                                       }
+                                   }).ToList();
             }
 
-            ViewBag.Titulo = "Lista de estudiante";
-            ViewBag.Subtitulo = "Utilizando ASP.NET MVC";
-
-            ViewData["Titulo2"] = "Segundo titulo";
+            ViewBag.Titulo = "Lista de estudiantes";
 
             return View(list_estudiante);
         }
@@ -110,7 +128,7 @@ namespace EscuelaMVC.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                ViewBag.Titulo = $"Editar escuela {estudiante.ID_Estudiante}";
+                ViewBag.Titulo = $"Editar estudiante {estudiante.ID_Estudiante}";
                 return View(estudiante);
             }
             else

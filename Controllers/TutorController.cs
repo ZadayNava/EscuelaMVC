@@ -14,11 +14,34 @@ namespace EscuelaMVC.Controllers
         // GET: Tutor
         public ActionResult Index()
         {
-            List<Tutor> list_tutor = new List<Tutor>();
+            List<TutorEstudiante_DTO> list_tutor = new List<TutorEstudiante_DTO>();
 
             using (EscuelaEntities context = new EscuelaEntities())
             {
-                list_tutor = (from Tutor in context.Tutor select Tutor).ToList();
+                list_tutor = (from e in context.Tutor
+                                join g in context.Estudiante on e.ID_Estudiante equals g.ID_Estudiante
+                                select new TutorEstudiante_DTO()
+                                {
+                                    Tutor_ = new Tutor_DTO()
+                                    {
+                                        ID_Estudiante = e.ID_Estudiante,
+                                        ID_Tutor = e.ID_Tutor,
+                                        Nombre = e.Nombre,
+                                        AMaterno = e.AMaterno,
+                                        APaterno = e.APaterno,
+                                        CURP = e.CURP,
+                                        Sexo = e.Sexo,
+                                        Telefono = e.Telefono,
+                                        Parentesco = e.Parentesco,
+                                        Direccion = e.Direccion,
+                                        FechaNacimiento = e.FechaNacimiento
+                                    },
+                                    estudiante_ = new Estudiante_DTO()
+                                    {
+                                        ID_Estudiante = g.ID_Estudiante,
+                                        Nombre = g.Nombre
+                                    }
+                                }).ToList();
             }
 
             ViewBag.Titulo = "Lista de tutores";

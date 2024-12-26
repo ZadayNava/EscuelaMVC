@@ -14,16 +14,31 @@ namespace EscuelaMVC.Controllers
         // GET: Grado
         public ActionResult Index()
         {
-            List<Grado> list_grados = new List<Grado>();
+            List<GradoProfesor_DTO> list_grados = new List<GradoProfesor_DTO>();
 
             using (EscuelaEntities context = new EscuelaEntities())
             {
-                list_grados = (from Grado in context.Grado select Grado).ToList();
-                
+                list_grados = (from e in context.Profesor
+                               join g in context.Grado on e.ID_Profesor equals g.ID_Profesor
+                               select new GradoProfesor_DTO()
+                               {
+                                   gradoP_ = new Grado_DTO()
+                                   {
+                                       ID_Grado = g.ID_Grado,
+                                       Grado = g.Grado1,
+                                       Grupo = g.Grupo
+                                   },
+                                   Profesor_ = new Profesor_DTO()
+                                   {
+                                       ID_Profesor = e.ID_Profesor,
+                                       Nombre = e.Nombre
+                                   }
+                               }).ToList();
+
             }
 
             ViewBag.Titulo = "Lista de grados";
-            ViewData["Titulo2"] = "Segundo titulo";
+
             return View(list_grados);
         }
 

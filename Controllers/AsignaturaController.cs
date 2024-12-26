@@ -23,9 +23,6 @@ namespace EscuelaMVC.Controllers
                 list_asignaturas = (from Asignatura in context.Asignatura select Asignatura).ToList();
             }
             ViewBag.Titulo = "Lista de asignaturas";
-            ViewBag.Subtitulo = "Utilizando ASP.NET MVC";
-
-            ViewData["Titulo2"] = "Segundo titulo";
             return View(list_asignaturas);
         }
 
